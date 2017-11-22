@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="jp">
 <head>
 	<meta charset="UTF-8">
@@ -18,6 +18,33 @@
    		messagingSenderId: "272941572629" 
    	}; 
    	firebase.initializeApp(config); 
+
+    //facebook プロバイダオブジェクトのインスタンス作成
+    var provider = new firebase.auth.FacebookAuthProvider();
+
+    var clickBtnLogin = function(){
+      //認証
+      firebase.auth().signInWithPopup(provider).then(function(result) {
+        //ログイン成功
+        var token = result.credential.accessToken;
+        var user = result.user;
+      }).catch(function(error) {
+        //エラー
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+      });
+    };
+
+    window.onload = function() {
+      document.getElementById("btnLogin").onclick = clickBtnLogin;
+    };
    	</script>
+
+  //facebook認証ボタン
+  <input type="button" value="ログイン" id="btnLogin">
+
+
 </body>
 </html>
