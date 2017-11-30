@@ -18,11 +18,12 @@
         padding: 0;
       }
     </style>
-  </head>
+  </head>Q
+
   <body>
     <div id="map"></div>
       
-      <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script> 
     <script> 
     // Initialize Firebase 
     var config = { 
@@ -35,7 +36,10 @@
     }; 
     firebase.initializeApp(config); 
     </script>
+
+    
       
+
     <script>
       var map;
       function initMap() {
@@ -72,6 +76,9 @@
                               'Error: Your browser doesn\'t support geolocation.');
       }
     </script>
+
+
+
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKT7CWNhZXYn22iBLxgP0GsBNHFmjumqQ&callback=initMap"
     async defer></script>
   </body>

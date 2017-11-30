@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <script>
+      /**
+      * Reference to Firebase database.
+      * @const
+      */
+      var firebase = new Firebase('https://fire-map-tutorial.firebaseio.com/');
+
+    </script>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB72JSMwvhh25ac-HDcpe9kK8xAZ8vTxVQ",
+    authDomain: "kiunchu-bf551.firebaseapp.com",
+    databaseURL: "https://kiunchu-bf551.firebaseio.com",
+    projectId: "kiunchu-bf551",
+    storageBucket: "kiunchu-bf551.appspot.com",
+    messagingSenderId: "272941572629"
+  };
+  firebase.initializeApp(config);
+
+
+
+    var key =  firebase.database().ref("data").push("piyo").key;
+
+</script>
+	
+<button id="sample" onClick="sample();">テスト</button>
+
+  </body>
+</html>
+
