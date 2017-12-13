@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>登録</title>	
+</head>
+<body>
+    <input type='text' id='username' placeholder='name'><br/>
+  ファイル：<input type="file" id="file-upload"><br/>
+     <input type="submit" id="send" value="送信" />
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+    <script language="javascript" type="text/javascript">
+    var config = { 
+  		apiKey: "AIzaSyB72JSMwvhh25ac-HDcpe9kK8xAZ8vTxVQ", 
+    	authDomain: "kiunchu-bf551.firebaseapp.com", 
+    	databaseURL: "https://kiunchu-bf551.firebaseio.com", 
+    	projectId: "kiunchu-bf551", 
+    	storageBucket: "kiunchu-bf551.appspot.com", 
+   		messagingSenderId: "272941572629" 
+   	}; 
+   	firebase.initializeApp(config);
+    
+    const storage = firebase.storage();
+    const inputFile = document.getElementById('file-upload');
+        
+    
+   
+
+        
+    var provider = new firebase.auth.FacebookAuthProvider();
+        console.log(provider);
+        firebase.auth().onAuthStateChanged(function(user) {
+            inputFile.addEventListener('change', (e) => {
+  const files = e.target.files;
+      var uid = user.uid;
+      var username;
+      console.log(user);
+      //var username = user.displayName;
+            $("#send").click(function(){
+          console.log("ikeru");
+                username = $('#username').val();
+                firebase.database().ref("users/" + uid).set({
+                    username:username,
+                    positionX:"X",
+                    positionY:"Y"
+                });
+                firebase.database().ref("users/" + uid).update({
+                    positionY:"Y2"
+                });
+                const ref = storage.ref("users/"+ uid + "/icon");
+                const uploadTask = ref.put(files[0]);
+            });
+        }, false);    
+    });
+      
+    //var key =  firebase.database().ref("users").push("user").key;
+    
+  </script>
+    
+</body>
+</html>
