@@ -23,7 +23,6 @@
    	}; 
    	firebase.initializeApp(config);
     var provider = new firebase.auth.FacebookAuthProvider();
-        console.log(provider);
         firebase.auth().onAuthStateChanged(function(user) {
         });
   </script>
