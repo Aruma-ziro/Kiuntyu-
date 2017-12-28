@@ -4,13 +4,85 @@
 	<title>makeevent</title>
 </head>
 <body>
-	<form>
-   <label>Your name:</label>
-   <input id="user" name="username" type="text" />
-	</form>
 
-<p><input type="submit" value="送信ボタン"></p>
-<p><input type="image" src="button.gif" alt="送信ボタン"></p>
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyARyj9vwRR1NNbHOeQF8-LJYBdBWIHNIYg",
+    authDomain: "myjohnhiroshi.firebaseapp.com",
+    databaseURL: "https://myjohnhiroshi.firebaseio.com",
+    projectId: "myjohnhiroshi",
+    storageBucket: "myjohnhiroshi.appspot.com",
+    messagingSenderId: "740556394270"
+  };
+  firebase.initializeApp(config);
+</script>
+
+
+<script type="text/javascript">
+	//入力した値を一時的に置く
+	function displaying() {
+		  var name = document.getElementById('eventName').value;
+		  namex = String(name);
+		  var contents = document.getElementById('eventContent').value;
+		  contentsx = String(contents);
+		  document.getElementById('answer').innerHTML = namex;
+		  document.getElementById('answer2').innerHTML = contentsx;
+	}
+
+	function makeEvent(_eventName, _eventContent, _numberLimit) {
+		  // 
+		  var eventData = {
+		    EventName: _eventName,
+		    EventContent: _eventContent,
+		    NumberLimit: _numberLimit
+		  };
+		firebase.database().ref("event").push("eventData").key;
+		  console.log(eventData);
+
+ // firebase.database().ref('event/').set({
+	// 	    EventName: _eventName,
+	// 	    EventContent: _eventContent,
+	// 	    NumberLimit: _numberLimit
+ //  });
+
+		  //プッシュの中にオブジェクトを生成する、チェック用
+		 // return newEventKey.push({
+		 // 	EventName: "j",
+		 //    EventContent: "f",
+		 //    NumberLimit: 3
+		 // });
+
+	}
+
+
+
+
+</script>
+
+<form name="param" action="#">
+
+	イベント名：<input type="text" id="eventName"><br/>
+	イベント内容：<input type="text" id="eventContent"><br/>
+	場所：<input type="button" value="マップ"><br/>
+	
+
+	<input type="button" value="送信" onClick="
+
+	displaying();
+	makeEvent(namex, contentsx, 3);
+
+
+	">
+
+</form>
+
+<div id="answer"></div>
+<div id="answer2"></div>
+
+
 
 </body>
 </html>
