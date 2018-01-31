@@ -27,7 +27,7 @@
                     username = $('#username').val();
                     profile = $('#profile').val();//ここ追加
                     firebase.database().ref("users/" + uid).set({
-                        username:username,
+                        name:username,
                         profile:profile//ここ更新
                     });
                     firebase.database().ref("users/" + uid + "/events/leader").set({

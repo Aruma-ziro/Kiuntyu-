@@ -21,17 +21,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     var uid = user.uid;
     if (user){
 
-        firebase.database().ref("users/" + uid +"/events"+"/leader").on("value",function(snapshot){
-            leaderEvent = snapshot.val();
-        });
-        firebase.database().ref("users/" + uid +"/events"+"/member").on("value",function(snapshot){
-            memberEvent = snapshot.val();
-        });
-    }
-
-    else{
-
-        ref = firebase.database().ref("/users/test1");
+        ref = firebase.database().ref("/users/" + uid);
 
         ref.on("value",function(snapshot){
 
@@ -42,5 +32,13 @@ firebase.auth().onAuthStateChanged(function(user) {
             document.getElementById("u_profile").innerHTML = "プロフィール：" + profile;
         });
 
+        firebase.database().ref("users/" + uid +"/events"+"/leader").on("value",function(snapshot){
+            leaderEvent = snapshot.val();
+        });
+        firebase.database().ref("users/" + uid +"/events"+"/member").on("value",function(snapshot){
+            memberEvent = snapshot.val();
+        });
+
     }
+  });
     
