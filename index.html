@@ -3,28 +3,19 @@
 <head>
 	<meta charset="UTF-8">
 	<title>機運厨テス</title>	
+
+	<!--　　　　　　     全ページ共通のスタイルシート    　　　　　　-->
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!--                ここまで                              -->
 </head>
 <body>
-	<a href="map.html">マーカー</a>
-    <a href="testMap.html">１回読み取り</a>
-    <a href="watch-position.html">常に読み取り</a>
-	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-messaging.js"></script>
-<script>
-//おまじない
-var config = { 
-  		apiKey: "AIzaSyB72JSMwvhh25ac-HDcpe9kK8xAZ8vTxVQ", 
-    	authDomain: "kiunchu-bf551.firebaseapp.com", 
-    	databaseURL: "https://kiunchu-bf551.firebaseio.com", 
-    	projectId: "kiunchu-bf551", 
-    	storageBucket: "kiunchu-bf551.appspot.com", 
-   		messagingSenderId: "272941572629" 
-   	}; 
-firebase.initializeApp(config);
-    </script>
-    
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>   
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
 </body>
 </html>
