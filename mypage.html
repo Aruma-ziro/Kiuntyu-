@@ -25,15 +25,23 @@
    	firebase.initializeApp(config);
     var provider = new firebase.auth.FacebookAuthProvider();
         var username;
-        var positionx;
+        var profile;
+        var leaderEvent;
+        var memberEvent;
         firebase.auth().onAuthStateChanged(function(user) {
             firebase.database().ref("users/" + user.uid +"/username").on("value",function(snapshot){
                 username = snapshot.val();
                 document.getElementById("name").innerHTML = "名前：" + username;
             });
-            firebase.database().ref("users/" + user.uid +"/positionX").on("value",function(snapshot){
-                positionx = snapshot.val();
-                document.getElementById("positionX").innerHTML = "X座標：" + positionx;
+            firebase.database().ref("users/" + user.uid +"/profile").on("value",function(snapshot){
+                profile = snapshot.val();
+                document.getElementById("profile").innerHTML = "プロフィール：" + profile;
+            });
+            firebase.database().ref("users/" + user.uid +"/events"+"/leader").on("value",function(snapshot){
+                leaderEvent = snapshot.val();
+            });
+            firebase.database().ref("users/" + user.uid +"/events"+"/member").on("value",function(snapshot){
+                memberEvent = snapshot.val();
             });
     });
   </script>
