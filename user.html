@@ -3,61 +3,55 @@
 <head>
 	<meta charset="UTF-8">
 	<title>登録</title>	
+
+  <!--　　　　　　     全ページ共通のスタイルシート    　　　　　　-->
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <!--                ここまで                              -->
 </head>
+
 <body>
-    <input type='text' id='username' placeholder='name'><br/>
-    ファイル：<input type="file" id="file-upload" accept="image/*"><br/>
+  <div class="pagewrap">
+    <header>
+      <h1 class="kiunity_logo">
+        <img class="kiunity" src="img/kiunity_logo.png" alt="kiunity">
+      </h1>
+      <a href="javascript:history.back()"><img class="left" src="img/left.png" alt="left"></a>
+      <hr>
+    </header>
+
+
+    <div class="content">
+      <h2>ユーザー情報の登録</h2>
+    </div>
+
+    <div class="content">
+    <p>ユーザー名を入力してください</p>
+    <input type='text' id='username' placeholder='name'>
+    </div>
+
+    <div class="content">
+    <p>アイコン画像</p>
+    <input type="file" id="file-upload" accept="image/*">
+    </div>
+      
+    <div class="content">
+    <p>自己紹介文</p>
+    <textarea id="profile" cols="35" rows="4"></textarea><!--ここ追加-->
+    </div>
+      
+    <div class="content">
     <input type="submit" id="send" value="送信" />
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
-    <script language="javascript" type="text/javascript">
-    var config = { 
-  		apiKey: "AIzaSyB72JSMwvhh25ac-HDcpe9kK8xAZ8vTxVQ", 
-    	authDomain: "kiunchu-bf551.firebaseapp.com", 
-    	databaseURL: "https://kiunchu-bf551.firebaseio.com", 
-    	projectId: "kiunchu-bf551", 
-    	storageBucket: "kiunchu-bf551.appspot.com", 
-   		messagingSenderId: "272941572629" 
-   	};
-   	firebase.initializeApp(config);
+    </div>
+  </div>
+    <div id="warning"> </div><!--ここ追加-->
     
-    const storage = firebase.storage();
-    const inputFile = document.getElementById('file-upload');
-        
-    var provider = new firebase.auth.FacebookAuthProvider();
-        console.log(provider);
-        firebase.auth().onAuthStateChanged(function(user) {
-            inputFile.addEventListener('change', (e) => {
-  const files = e.target.files;
-        
-      var uid = user.uid;
-      var username;
-      console.log(user);
-            $("#send").click(function(){
-          console.log("ikeru");
-                username = $('#username').val();
-                firebase.database().ref("users/" + uid).set({
-                    username:username,
-                    positionX:"X",
-                    positionY:"Y"
-                });
-                const ref = storage.ref("users/"+ uid + "/icon");
-                const uploadTask = ref.put(files[0]);
-                uploadTask.on('state_changed', function(snap){
-              var progress = (snap.bytesTransferred / snap.totalBytes) * 100;
-               firebase.database().ref("users/" + uid +"/username").on("value",function(snapshot){
-                if(snapshot.val() == username && username !== null && progress == 100)location.href="complete.html";
-                }); 
-            });
-            });
-        }, false);
-    });
-    //var key =  firebase.database().ref("users").push("user").key;
-  </script>
-    
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+  <script type="text/javascript" src="js/user.js"></script>
 </body>
 </html>
