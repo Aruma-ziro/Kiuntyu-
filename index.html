@@ -5,11 +5,17 @@
 	<title>機運厨テス</title>	
 </head>
 <body>
-    <p>Facebookで登録する</p>
-  <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-	<script> 
-  	// Initialize Firebase 
-  	var config = { 
+	<a href="map.html">マーカー</a>
+    <a href="testMap.html">１回読み取り</a>
+    <a href="watch-position.html">常に読み取り</a>
+	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-messaging.js"></script>
+<script>
+//おまじない
+var config = { 
   		apiKey: "AIzaSyB72JSMwvhh25ac-HDcpe9kK8xAZ8vTxVQ", 
     	authDomain: "kiunchu-bf551.firebaseapp.com", 
     	databaseURL: "https://kiunchu-bf551.firebaseio.com", 
@@ -17,42 +23,8 @@
     	storageBucket: "kiunchu-bf551.appspot.com", 
    		messagingSenderId: "272941572629" 
    	}; 
-   	firebase.initializeApp(config); 
-
-    //facebook プロバイダオブジェクトのインスタンス作成
-    var provider = new firebase.auth.FacebookAuthProvider();
-
-     var clickBtnLogin = function(){
-      firebase.auth().signInWithRedirect(provider);
-    };
-      firebase.auth().getRedirectResult().then(function(result) {
-  if (result.credential) {
-    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-    var token = result.credential.accessToken;
-    // ...
-  }
-  // The signed-in user info.
-  var user = result.user;
-  console.log(user);
-}).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-  console.log(error);
-});
-    window.onload = function() {
-      document.getElementById("btnLogin").onclick = clickBtnLogin;
-    };
-   	</script>
-
-  <!--facebook認証ボタン-->
-  <input type="button" value="ログイン" id="btnLogin">
-    <a href="user.html">ユーザー</a>
-
+firebase.initializeApp(config);
+    </script>
+    
 </body>
 </html>

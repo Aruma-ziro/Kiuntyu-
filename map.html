@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 80%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+      <!--マーカー-->
+    <div id="map"></div>
+      <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-messaging.js"></script>
+<script>
+//おまじない
+var config = { 
+  		apiKey: "AIzaSyB72JSMwvhh25ac-HDcpe9kK8xAZ8vTxVQ", 
+    	authDomain: "kiunchu-bf551.firebaseapp.com", 
+    	databaseURL: "https://kiunchu-bf551.firebaseio.com", 
+    	projectId: "kiunchu-bf551", 
+    	storageBucket: "kiunchu-bf551.appspot.com", 
+   		messagingSenderId: "272941572629" 
+   	}; 
+firebase.initializeApp(config);
+    </script>
+
+    <script>
+      //現在地レイヤーを有効にします。
+   //mMap.setMyLocationEnabled(true);
+
+
+      function initMap() {
+          
+         var data = {
+          lat: 38.2682,
+          lng: 140.8694
+        };
+
+        var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+        var mapOptions = {
+          zoom: 9,
+          center: myLatlng
+        }
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+
+      var iconLatlng;
+      var puttingLatLng = firebase.database().ref("pos/");
+       //Listen for clicks and add the location of the click to firebase.
+        map.addListener('click', function(e) {
+            data.lat = e.latLng.lat();
+            data.lng = e.latLng.lng();
+            console.log(e.latLng.lat());
+            console.log(e.latLng.lng());
+
+              puttingLatLng.update ({
+                    lat: data.lat,
+                    lng: data.lng
+              });
+
+             iconLatlng = {lat: data.lat, lng: data.lng};
+
+
+
+            var marker = new google.maps.Marker({
+                position: iconLatlng,
+                title:"Hello World!"
+            });
+
+            // To add the marker to the map, call setMap();
+             marker.setMap(map);
+
+          });
+      }
+
+      //This event type is triggered when the data has changed.
+      // var position = firebase.database().ref("players/");
+      // var setpostion = function(data){
+      //    var players = data.val();
+      //    console.log("The updated player name is " + data.val());
+      // };
+      // position.on("child_changed", setpostion);
+
+    </script>
+
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKT7CWNhZXYn22iBLxgP0GsBNHFmjumqQ&callback=initMap"
+    async defer></script>
+  </body>
+</html>
