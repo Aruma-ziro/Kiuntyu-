@@ -14,11 +14,11 @@ var profile;
 var leaderEvent;
 var memberEvent;
 firebase.auth().onAuthStateChanged(function(user) {
-    firebase.database().ref("users/" + uid +"/username").on("value",function(snapshot){
+    firebase.database().ref("users/" + "test1/" +"/username").on("value",function(snapshot){
         username = snapshot.val();
         document.getElementById("name").innerHTML = "名前：" + username;
     });
-    firebase.database().ref("users/" + uid +"/profile").on("value",function(snapshot){
+    firebase.database().ref("users/" + "test1/" +"/profile").on("value",function(snapshot){
         profile = snapshot.val();
         document.getElementById("profile").innerHTML = "プロフィール：" + profile;
     });
